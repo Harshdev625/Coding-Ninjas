@@ -6,13 +6,13 @@ void removeX(char input[]){
     if(b==0){
         return;
     }
-    removeX(input+1);
-    if(input[0]=='x'){
+    if(*input=='x'){
         for(int i=0;i<b;i++){
             input[i]=input[i+1];
         }
+        removeX(input);
     }
-  
+    removeX(input+1);
 }
 int main() {
     char input[100];
