@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1641319669 source:c:\users\sksha\onedrive\desktop\coding ninjas\flow chart10\check permutation\main.cpp
+	<iostream>
+	<cstring>
+	<string.h>
+

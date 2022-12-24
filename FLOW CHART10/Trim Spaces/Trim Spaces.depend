@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1641115796 source:c:\users\sksha\onedrive\desktop\coding ninjas\flow chart10\trim spaces\main.cpp
+	<iostream>
+	<cstring>
+	<string.h>
+
