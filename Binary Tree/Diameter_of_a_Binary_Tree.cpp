@@ -16,14 +16,24 @@ public:
     }
 };
 
-int height(BinaryTreeNode<int> *root)
+pair<int,int> heightdiameter(BinaryTreeNode<int> *root)
 {
     // Write our code here
     if (root == NULL)
     {
-        return 0;
+        pair<int,int>p(0,0);
+        return p;
     }
-    return 1+max(height(root->left),height(root->right));
+    pair<int,int>left= heightdiameter(root->left);
+    pair<int,int>right= heightdiameter(root->right);
+    int lh=left.first;
+    int ld=left.second;
+    int rh=right.first;
+    int rd=right.second;
+    pair<int,int>ans;
+    ans.first=1+max(lh,rh);
+    ans.second=max(lh+rh,max(ld,rd));
+    return ans;
 }
 
 BinaryTreeNode<int> *takeInput()
@@ -66,5 +76,7 @@ BinaryTreeNode<int> *takeInput()
 int main()
 {
     BinaryTreeNode<int> *root = takeInput();
-    cout << height(root);
+    pair<int,int>p=heightdiameter(root);
+    cout << p.first<<endl;
+    cout << p.second<<endl;
 }
