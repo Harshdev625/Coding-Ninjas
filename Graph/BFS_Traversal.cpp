@@ -1,65 +1,60 @@
-#include<iostream>
-#include<queue>
+#include <bits/stdc++.h>
 using namespace std;
-void print(int** arr, int n, int starting_vertex, bool* visited)
+
+void printBFS(int **edges, int s, int vertex, bool *visited)
 {
 	queue<int> q;
-	q.push(starting_vertex);
-	visited[starting_vertex] = true;
+	q.push(s);
+	visited[s] = true;
 	while (!q.empty())
 	{
-		cout << q.front()<<" ";
-		int current_element = q.front();
-		for (int i = 1; i < n; i++)
+		int front = q.front();
+		q.pop();
+		cout << front << " ";
+		for (int i = 0; i < vertex; i++)
 		{
-			if (i == current_element)
+			if (edges[front][i] == 1 && !visited[i])
 			{
-				continue;
-			}
-			if (visited[i])
-			{
-				continue;
-			}
-			if (arr[current_element][i] == 1)
-			{
-				q.push(i);
 				visited[i] = true;
+				q.push(i);
 			}
 		}
-		q.pop();
 	}
 }
+
 int main()
 {
-	int v, e;
-	cin >> v >> e;
-	int** arr = new int* [v];
-	for (int i = 0; i < v; i++)
+	int n, vertex;
+	cin >> n >> vertex;
+	int **edges = new int *[n];
+	for (int i = 0; i < n; i++)
 	{
-		arr[i] = new int[v];
-		for (int j = 0; j < v; j++)
+		edges[i] = new int[n];
+		for (int j = 0; j < n; j++)
 		{
-			arr[i][j] = 0;
+			edges[i][j] = 0;
 		}
 	}
-	while (e--)
+
+	int s, e;
+	for (int i = 0; i < vertex; i++)
 	{
-		int a, b;
-		cin >> a >> b;
-		arr[a][b] = 1;
-		arr[b][a] = 1;
+		cin >> s >> e;
+		edges[s][e] = 1;
+		edges[e][s] = 1;
 	}
-	bool* visited = new bool[v];
-	for (int i = 0; i < v; i++)
+
+	bool *visited = new bool[n];
+	for (int i = 0; i < n; i++)
 	{
 		visited[i] = false;
 	}
-    for(int i=0; i<v; i++)
-    {
-        if(!visited[i])
-        {
-            print(arr, v, i, visited);
-        }
-    }
-	
+	for (int i = 0; i < n; i++)
+	{
+		if (!visited[i])
+		{
+			printBFS(edges, i, n, visited);
+		}
+	}
+	return 0;
 }
