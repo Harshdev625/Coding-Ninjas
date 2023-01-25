@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void printBFS(int **edges, int s, int vertex, bool *visited)
+void printBFS(int **arr, int s, int edges, bool *visited)
 {
 	queue<int> q;
 	q.push(s);
@@ -11,9 +11,9 @@ void printBFS(int **edges, int s, int vertex, bool *visited)
 		int front = q.front();
 		q.pop();
 		cout << front << " ";
-		for (int i = 0; i < vertex; i++)
+		for (int i = 0; i < edges; i++)
 		{
-			if (edges[front][i] == 1 && !visited[i])
+			if (arr[front][i] == 1 && !visited[i])
 			{
 				visited[i] = true;
 				q.push(i);
@@ -24,24 +24,24 @@ void printBFS(int **edges, int s, int vertex, bool *visited)
 
 int main()
 {
-	int n, vertex;
-	cin >> n >> vertex;
-	int **edges = new int *[n];
+	int n, edges;
+	cin >> n >> edges;
+	int **arr = new int *[n];
 	for (int i = 0; i < n; i++)
 	{
-		edges[i] = new int[n];
+		arr[i] = new int[n];
 		for (int j = 0; j < n; j++)
 		{
-			edges[i][j] = 0;
+			arr[i][j] = 0;
 		}
 	}
 
 	int s, e;
-	for (int i = 0; i < vertex; i++)
+	for (int i = 0; i < edges; i++)
 	{
 		cin >> s >> e;
-		edges[s][e] = 1;
-		edges[e][s] = 1;
+		arr[s][e] = 1;
+		arr[e][s] = 1;
 	}
 
 	bool *visited = new bool[n];
@@ -53,7 +53,7 @@ int main()
 	{
 		if (!visited[i])
 		{
-			printBFS(edges, i, n, visited);
+			printBFS(arr, i, n, visited);
 		}
 	}
 	return 0;
