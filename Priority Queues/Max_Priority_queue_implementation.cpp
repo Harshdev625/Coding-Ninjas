@@ -2,7 +2,8 @@
 #include <vector>
 using namespace std;
 #include "Max_Priority_Queue.h"
-int main(){
+int main()
+{
     PriorityQueue q;
     q.insert(1);
     q.insert(2);
@@ -11,10 +12,11 @@ int main(){
     q.insert(1111);
     q.insert(66666);
     q.insert(555555);
-    cout<<q.getSize()<<endl;
-    cout<<q.getMax()<<endl;
-    while(!q.isEmpty()){
-        cout<<q.removeMax()<<" ";
+    cout << q.getSize() << endl;
+    cout << q.getMax() << endl;
+    while (!q.isEmpty())
+    {
+        cout << q.removeMax() << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
